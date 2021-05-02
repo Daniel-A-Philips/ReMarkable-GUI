@@ -25,18 +25,16 @@ def make_string(s):
 global layout
 screenData = screens()
 layout = [
-         [sg.Input("IP",key='IP')],
-         [sg.Input("Password",key='password')],
-         [sg.Combo(['Bottom','Top','Left','Right'],key='orientation')],
-         [sg.Combo(screens(),key='monitor')],
-         [sg.Checkbox("evdev", False,key='evdev')],
-         [sg.Checkbox("Save Password?",False,key='save')],
-         [sg.Button("Run")],
-         [sg.Button("Run using saved data")],
-         [sg.Button("Quit")]
+         [sg.Text('IP Address',size=(9,1)),sg.Input("IP",key='IP')],
+         [sg.Text('Password',size=(9,1)),sg.Input("Password",key='password')],
+         [sg.Text('Orientation',size=(9,1)),sg.Combo(['Bottom','Top','Left','Right'],default_value = 'Bottom',key='orientation')],
+         [sg.Text('Monitor',size=(9,1)),sg.Combo(screens(), default_value = screens()[0],key='monitor')],
+         [sg.Checkbox("Evdev (Only on Linux)", False,key='evdev'), sg.Checkbox("Save Password?",False,key='save')],
+         [sg.Button("Run"), sg.Button("Run using saved data")],
+         [sg.Button("Quit"),sg.Text('This will end any ReMouse sessions running')]
          ]
 
-window = sg.Window("reMouse GUI",layout)
+window = sg.Window("ReMouse GUI",layout,icon= os.path.dirname(os.path.abspath(__file__))+'logo.ico')
 
 def run(values):
     while "/" in values['orientation']: values['orientation'] = values['orientation'][:-1]

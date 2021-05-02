@@ -147,6 +147,10 @@ class TKint:
 if __name__ == '__main__':
     import tkinter as tk
     root = tk.Tk()
+    root.title('ReMouse GUI')
+    absPath = os.path.dirname(os.path.abspath(__file__))
+    img = tk.PhotoImage(absPath+"/logo.svg")
+    root.tk.call('wm','iconphoto',root._w,img)
     app = TKint(root)
     app.run()
 
