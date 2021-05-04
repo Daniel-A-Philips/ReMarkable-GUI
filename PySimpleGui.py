@@ -39,7 +39,7 @@ window = sg.Window("ReMouse GUI",layout,icon= os.path.dirname(os.path.abspath(__
 def run(values):
 	while "/" in values['orientation']: values['orientation'] = values['orientation'][:-1]
 	values['orientation'] = values['orientation'].lower()
-	values['monitor'] = values['monitor'][:-1]
+	values['monitor'] = values['monitor']
 	print('Values:', values)
 	cmd = "remouse --address " + values['IP'] + " --password " + values['password'] + " --orientation " + values['orientation'] + " --monitor " + str(screens().index(values['monitor']))
 	if values['save']:
