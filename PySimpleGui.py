@@ -34,11 +34,12 @@ layout = [
          [sg.Button("Quit"),sg.Text('This will end any ReMouse sessions running')]
          ]
 
-window = sg.Window("ReMouse GUI",layout,icon= os.path.dirname(os.path.abspath(__file__))+'logo.ico')
+window = sg.Window("ReMouse GUI",layout,icon= os.path.dirname(os.path.abspath(__file__))+'logo.svg')
 
 def run(values):
     while "/" in values['orientation']: values['orientation'] = values['orientation'][:-1]
     values['orientation'] = values['orientation'].lower()
+    values['monitor'] = values['monitor'][:-1]
     print('Values:', values)
     cmd = "remouse --address " + values['IP'] + " --password " + values['password'] + " --orientation " + values['orientation'] + " --monitor " + str(screens().index(values['monitor']))
     if values['save']:
