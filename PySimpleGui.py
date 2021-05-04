@@ -13,7 +13,6 @@ def make_bitseq(s):
 
 def make_string(s):
      splits = s.split(" ")
-     print(splits)
      letters = []
      for a in splits:
          if a == '': continue
