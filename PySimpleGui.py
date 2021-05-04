@@ -31,7 +31,7 @@ layout = [
          [sg.Text('Monitor',size=(9,1)),sg.Combo(screens(), default_value = screens()[0],key='monitor')],
          [sg.Text('Status: Disconnected',key='status')],
          [sg.Checkbox("Evdev (Only on Linux)", False,key='evdev'), sg.Checkbox("Save Password?",False,key='save')],
-         [sg.Button("Run"), sg.Button("Run using saved data")],
+         [sg.Button("Run")],
          [sg.Button("Quit"),sg.Text('This will end any ReMouse sessions running')]
          ]
 
@@ -71,10 +71,6 @@ def loadData():
         values['monitor'] = readString[3]
     return values
 
-def runWithSavedData(values):
-    values = loadData()
-    return run(values)
-
 while True:
     event, values = window.read()
     cmd = ""
@@ -85,14 +81,6 @@ while True:
         thread = Thread(target = lambda: os.system(cmd))
         thread.start()
         window['status'].update('Status: Connected')
-
-    elif event == "Run using saved data":
-        os.system("pkill remouse")
-        cmd = runWithSavedData(values)
-        thread = Thread(target = lambda: os.system(cmd))
-        thread.start()
-        window['status'].update('Status: Connected')
-
     elif event == "Load IP":
         values = loadData()
         window['IP'].update(values['IP'])
