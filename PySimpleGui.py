@@ -34,8 +34,9 @@ layout = [
          [sg.Button("Run")],
          [sg.Button("Quit"),sg.Text('This will end any ReMouse sessions running')]
          ]
-
-window = sg.Window("ReMouse GUI",layout,icon= os.path.dirname(os.path.abspath(__file__))+'logo.svg')
+iconPath = os.path.dirname(os.path.abspath(__file__))+'/logo.png'
+window = sg.Window("ReMouse GUI",layout)
+window.set_icon(iconPath)
 
 def run(values):
     while "/" in values['orientation']: values['orientation'] = values['orientation'][:-1]
