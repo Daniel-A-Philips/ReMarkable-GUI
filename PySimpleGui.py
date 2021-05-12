@@ -31,7 +31,7 @@ layout = [
          [sg.Text('Monitor',size=(9,1)),sg.Combo(screens(), default_value = screens()[0],key='monitor')],
          [sg.Text('Status: Disconnected',key='status')],
          [sg.Checkbox("Evdev (Only on Linux)", False,key='evdev'), sg.Checkbox("Save Password?",False,key='save')],
-         [sg.Button("Run")],
+         [sg.Button("Run"),sg.Button("Stop")],
          [sg.Button("Quit"),sg.Text('This will end any ReMouse sessions running')]
          ]
 iconPath = os.path.dirname(os.path.abspath(__file__))+'/logo.png'
@@ -81,7 +81,10 @@ while True:
         cmd = run(values)
         thread = Thread(target = lambda: os.system(cmd))
         thread.start()
+        print('Started Thread:',cmd)
         window['status'].update('Status: Connected')
+    elif event == "Stop":
+        os.system("pkill remouse")
     elif event == "Load IP":
         values = loadData()
         window['IP'].update(values['IP'])
