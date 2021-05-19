@@ -1,4 +1,4 @@
 #!/bin/bash 
-
-cd "/home/danie/Documents/Remarkable GUI"
+cd
+cd "/home/daniel/Documents/ReMarkable-GUI"
 python3 PySimpleGui.py
