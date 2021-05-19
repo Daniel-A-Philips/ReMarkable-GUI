@@ -61,7 +61,7 @@ def run(values):
         File = open("data.txt",'w')
         readFile = open("data.txt",'r')
         read = readFile.read()
-        toWrite = make_bitseq(values['IP'] + "," + values['password'] + "," + values['orientation'] + "," + values['monitor'] + "/") #The slash is added to indicate the end of this data
+        toWrite = make_bitseq(values['IP'] + "," + values['password'] + "," + values['orientation'] + "," + str(values['monitor']) + "/") #The slash is added to indicate the end of this data
         if toWrite in read:
             return cmd
         File.write(toWrite)
